@@ -23,3 +23,17 @@
 23. `SELECT * FROM Services;`: Selects and displays all records from the `Services` table.
 24. `INSERT INTO Services (ServiceID, ServiceName, Description, Fee, DurationMinutes) VALUES (6, 'New Service', 'Description', 25.00, 10);`: Inserts a new record into the `Services` table.
 25. `DELETE FROM Citizens;`: Attempts to delete all records from the `Citizens` table, but fails due to foreign key constraints.
+
+To change the commands for using MySQL instead of MariaDB, you need to update the service commands.
+
+1. Change `sudo systemctl start mariadb` to `sudo systemctl start mysql`.
+2. Change `sudo systemctl status mariadb` to `sudo systemctl status mysql`.
+3. Change `sudo mysql -u root -p` to `sudo mysql -u root -p`.
+
+The rest of the SQL commands will work the same for both MySQL and MariaDB. Here are the updated commands:
+
+1. `sudo systemctl start mysql`: Starts the MySQL service.
+2. `sudo systemctl status mysql`: Checks the status of the MySQL service.
+3. `sudo mysql -u root -p`: Logs into the MySQL server as the root user with password prompt.
+
+The SQL commands to create databases, tables, and records remain unchanged.
