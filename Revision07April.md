@@ -58,84 +58,204 @@ Here are the detailed steps for creating a database management system for the DE
   - Data Type: `int`
   - Justification: Links the student to a qualification.
 
-### 2. DDL Statements to Create the Tables
+# MariaDB Database Creation and Management for DEECE Department
 
+## Steps and Outputs
+
+### 1. Create Database and Use It
 ```sql
-CREATE TABLE rustin_qualification (
-    rustin_qual_id INT PRIMARY KEY,
-    rustin_qual_name VARCHAR(255),
-    rustin_qual_desc VARCHAR(255),
-    rustin_qual_duration INT,
-    rustin_qual_level VARCHAR(50)
-);
+mysql> CREATE DATABASE rustin_deece_db;
+Query OK, 1 row affected (0.00 sec)
 
-CREATE TABLE rustin_subject (
-    rustin_subj_id INT PRIMARY KEY,
-    rustin_subj_name VARCHAR(255),
-    rustin_subj_desc VARCHAR(255),
-    rustin_qual_id INT,
-    rustin_subj_credits INT,
-    FOREIGN KEY (rustin_qual_id) REFERENCES rustin_qualification(rustin_qual_id)
-);
-
-CREATE TABLE rustin_student (
-    rustin_stud_id INT PRIMARY KEY,
-    rustin_stud_name VARCHAR(255),
-    rustin_stud_email VARCHAR(255),
-    rustin_stud_phone VARCHAR(15),
-    rustin_qual_id INT,
-    FOREIGN KEY (rustin_qual_id) REFERENCES rustin_qualification(rustin_qual_id)
-);
+mysql> USE rustin_deece_db;
+Database changed
 ```
 
-### 3. DML Statements to Populate the Tables
+### 2. Create Tables
+```sql
+mysql> CREATE TABLE rustin_qualification (
+    ->     rustin_qual_id INT PRIMARY KEY,
+    ->     rustin_qual_name VARCHAR(255),
+    ->     rustin_qual_desc VARCHAR(255),
+    ->     rustin_qual_duration INT,
+    ->     rustin_qual_level VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
 
+mysql> CREATE TABLE rustin_subject (
+    ->     rustin_subj_id INT PRIMARY KEY,
+    ->     rustin_subj_name VARCHAR(255),
+    ->     rustin_subj_desc VARCHAR(255),
+    ->     rustin_qual_id INT,
+    ->     rustin_subj_credits INT,
+    ->     FOREIGN KEY (rustin_qual_id) REFERENCES rustin_qualification(rustin_qual_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE rustin_student (
+    ->     rustin_stud_id INT PRIMARY KEY,
+    ->     rustin_stud_name VARCHAR(255),
+    ->     rustin_stud_email VARCHAR(255),
+    ->     rustin_stud_phone VARCHAR(15),
+    ->     rustin_qual_id INT,
+    ->     FOREIGN KEY (rustin_qual_id) REFERENCES rustin_qualification(rustin_qual_id)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+```
+
+### 3. Show Tables
+```sql
+mysql> SHOW TABLES;
++---------------------------+
+| Tables_in_rustin_deece_db |
++---------------------------+
+| rustin_qualification      |
+| rustin_student            |
+| rustin_subject            |
++---------------------------+
+3 rows in set (0.00 sec)
+```
+
+### 4. Populate Tables
 ```sql
 -- Populate Qualification Table
-INSERT INTO rustin_qualification VALUES (1, 'Bachelor of Engineering Technology', 'Engineering Technology Program', 4, 'Bachelor');
--- Add 5 more rows similarly
+mysql> INSERT INTO rustin_qualification VALUES 
+    -> (1, 'BET', 'ET Program', 4, 'Bach'),
+    -> (2, 'MET', 'Adv ET Program', 2, 'Mast'),
+    -> (3, 'DET', 'Doc in ET', 5, 'Doc'),
+    -> (4, 'AET', 'Assoc ET Degree', 2, 'Assoc'),
+    -> (5, 'DIET', 'Dip in ET', 3, 'Dip'),
+    -> (6, 'CET', 'Cert ET Program', 1, 'Cert');
+Query OK, 6 rows affected (0.02 sec)
 
 -- Populate Subject Table
-INSERT INTO rustin_subject VALUES (1, 'Mathematics 1', 'Introduction to Mathematics', 1, 10);
--- Add 5 more rows similarly
+mysql> INSERT INTO rustin_subject VALUES 
+    -> (1, 'Math 1', 'Intro to Math', 1, 10),
+    -> (2, 'Math 2', 'Inter Math', 1, 10),
+    -> (3, 'Math 3', 'Adv Math', 1, 10),
+    -> (4, 'Phys 1', 'Intro to Phys', 1, 10),
+    -> (5, 'Phys 2', 'Inter Phys', 1, 10),
+    -> (6, 'Phys 3', 'Adv Phys', 1, 10);
+Query OK, 6 rows affected (0.02 sec)
 
 -- Populate Student Table
-INSERT INTO rustin_student VALUES (1, 'John Doe', 'john.doe@example.com', '1234567890', 1);
--- Add 5 more rows similarly
+mysql> INSERT INTO rustin_student VALUES 
+    -> (1, 'J Doe', 'jd1@example.com', '1234567890', 1),
+    -> (2, 'J Doe 2', 'jd2@example.com', '1234567891', 1),
+    -> (3, 'J Doe 3', 'jd3@example.com', '1234567892', 1),
+    -> (4, 'J Doe 4', 'jd4@example.com', '1234567893', 1),
+    -> (5, 'J Doe 5', 'jd5@example.com', '1234567894', 1),
+    -> (6, 'J Doe 6', 'jd6@example.com', '1234567895', 1);
+Query OK, 6 rows affected (0.02 sec)
 ```
 
-### 4. Select * from each table
-
+### 5. Select All Records from Each Table
 ```sql
-SELECT * FROM rustin_qualification;
-SELECT * FROM rustin_subject;
-SELECT * FROM rustin_student;
+mysql> SELECT * FROM rustin_qualification;
++----------------+------------------+------------------+----------------------+-------------------+
+| rustin_qual_id | rustin_qual_name | rustin_qual_desc | rustin_qual_duration | rustin_qual_level |
++----------------+------------------+------------------+----------------------+-------------------+
+|              1 | BET              | ET Program       |                    4 | Bach              |
+|              2 | MET              | Adv ET Program   |                    2 | Mast              |
+|              3 | DET              | Doc in ET        |                    5 | Doc               |
+|              4 | AET              | Assoc ET Degree  |                    2 | Assoc             |
+|              5 | DIET             | Dip in ET        |                    3 | Dip               |
+|              6 | CET              | Cert ET Program  |                    1 | Cert              |
++----------------+------------------+------------------+----------------------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM rustin_subject;
++----------------+------------------+------------------+----------------+---------------------+
+| rustin_subj_id | rustin_subj_name | rustin_subj_desc | rustin_qual_id | rustin_subj_credits |
++----------------+------------------+------------------+----------------+---------------------+
+|              1 | Math 1           | Intro to Math    |              1 |                  10 |
+|              2 | Math 2           | Inter Math       |              1 |                  10 |
+|              3 | Math 3           | Adv Math         |              1 |                  10 |
+|              4 | Phys 1           | Intro to Phys    |              1 |                  10 |
+|              5 | Phys 2           | Inter Phys       |              1 |                  10 |
+|              6 | Phys 3           | Adv Phys         |              1 |                  10 |
++----------------+------------------+------------------+----------------+---------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM rustin_student;
++----------------+------------------+-------------------+-------------------+----------------+
+| rustin_stud_id | rustin_stud_name | rustin_stud_email | rustin_stud_phone | rustin_qual_id |
++----------------+------------------+-------------------+-------------------+----------------+
+|              1 | J Doe            | jd1@example.com   | 1234567890        |              1 |
+|              2 | J Doe 2          | jd2@example.com   | 1234567891        |              1 |
+|              3 | J Doe 3          | jd3@example.com   | 1234567892        |              1 |
+|              4 | J Doe 4          | jd4@example.com   | 1234567893        |              1 |
+|              5 | J Doe 5          | jd5@example.com   | 1234567894        |              1 |
+|              6 | J Doe 6          | jd6@example.com   | 1234567895        |              1 |
++----------------+------------------+-------------------+-------------------+----------------+
+6 rows in set (0.00 sec)
 ```
 
-### 5. Select distinct from each table
-
+### 6. Select Distinct Values from Each Table
 ```sql
-SELECT DISTINCT rustin_qual_name FROM rustin_qualification;
-SELECT DISTINCT rustin_subj_name FROM rustin_subject;
-SELECT DISTINCT rustin_stud_name FROM rustin_student;
+mysql> SELECT DISTINCT rustin_qual_name FROM rustin_qualification;
++------------------+
+| rustin_qual_name |
++------------------+
+| BET              |
+| MET              |
+| DET              |
+| AET              |
+| DIET             |
+| CET              |
++------------------+
+6 rows in set (0.02 sec)
+
+mysql> SELECT DISTINCT rustin_subj_name FROM rustin_subject;
++------------------+
+| rustin_subj_name |
++------------------+
+| Math 1           |
+| Math 2           |
+| Math 3           |
+| Phys 1           |
+| Phys 2           |
+| Phys 3           |
++------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT rustin_stud_name FROM rustin_student;
++------------------+
+| rustin_stud_name |
++------------------+
+| J Doe            |
+| J Doe 2          |
+| J Doe 3          |
+| J Doe 4          |
+| J Doe 5          |
+| J Doe 6          |
++------------------+
+6 rows in set (0.00 sec)
 ```
 
-### 6. Use order by
-
+### 7. Use Order By
 ```sql
-SELECT * FROM rustin_student ORDER BY rustin_stud_name;
+mysql> SELECT * FROM rustin_student ORDER BY rustin_stud_name;
++----------------+------------------+-------------------+-------------------+----------------+
+| rustin_stud_id | rustin_stud_name | rustin_stud_email | rustin_stud_phone | rustin_qual_id |
++----------------+------------------+-------------------+-------------------+----------------+
+|              1 | J Doe            | jd1@example.com   | 1234567890        |              1 |
+|              2 | J Doe 2          | jd2@example.com   | 1234567891        |              1 |
+|              3 | J Doe 3          | jd3@example.com   | 1234567892        |              1 |
+|              4 | J Doe 4          | jd4@example.com   | 1234567893        |              1 |
+|              5 | J Doe 5          | jd5@example.com   | 1234567894        |              1 |
+|              6 | J Doe 6          | jd6@example.com   | 1234567895        |              1 |
++----------------+------------------+-------------------+-------------------+----------------+
+6 rows in set (0.00 sec)
 ```
 
-### 7. Use group by
-
+### 8. Use Aggregation
 ```sql
-SELECT rustin_qual_id, COUNT(*) FROM rustin_student GROUP BY rustin_qual_id;
+mysql> SELECT AVG(rustin_subj_credits) AS avg_credits FROM rustin_subject;
++-------------+
+| avg_credits |
++-------------+
+|     10.0000 |
++-------------+
+1 row in set (0.01 sec)
 ```
-
-### 8. Use aggregation
-
-```sql
-SELECT AVG(rustin_subj_credits) AS avg_credits FROM rustin_subject;
-```
-
-This setup ensures that the database management system is well-structured, with meaningful attribute domains and comprehensive DDL, DML, and SQL queries to manage and retrieve data effectively.
