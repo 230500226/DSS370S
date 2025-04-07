@@ -58,7 +58,7 @@
 
 ## Commands \and outputs
 
-### 1. Create Database and Use It
+### 2.1. Create Database and Use It
 ```sql
 mysql> CREATE DATABASE rustin_deece_db;
 Query OK, 1 row affected (0.00 sec)
@@ -67,7 +67,7 @@ mysql> USE rustin_deece_db;
 Database changed
 ```
 
-### 2. Create Tables
+### 2.2. Create Tables
 ```sql
 mysql> CREATE TABLE rustin_qualification (
     ->     rustin_qual_id INT PRIMARY KEY,
@@ -99,7 +99,7 @@ mysql> CREATE TABLE rustin_student (
 Query OK, 0 rows affected (0.02 sec)
 ```
 
-### 3. Show Tables
+### 2.3. Show Tables
 ```sql
 mysql> SHOW TABLES;
 +---------------------------+
@@ -112,7 +112,7 @@ mysql> SHOW TABLES;
 3 rows in set (0.00 sec)
 ```
 
-### 4. Populate Tables
+### 3.1. Populate Tables
 ```sql
 -- Populate Qualification Table
 mysql> INSERT INTO rustin_qualification VALUES 
@@ -145,7 +145,7 @@ mysql> INSERT INTO rustin_student VALUES
 Query OK, 6 rows affected (0.02 sec)
 ```
 
-### 5. Select All Records from Each Table
+### 4. Select All Records from Each Table
 ```sql
 mysql> SELECT * FROM rustin_qualification;
 +----------------+------------------+------------------+----------------------+-------------------+
@@ -187,7 +187,7 @@ mysql> SELECT * FROM rustin_student;
 6 rows in set (0.00 sec)
 ```
 
-### 6. Select Distinct Values from Each Table
+### 5. Select Distinct Values from Each Table
 ```sql
 mysql> SELECT DISTINCT rustin_qual_name FROM rustin_qualification;
 +------------------+
@@ -229,7 +229,7 @@ mysql> SELECT DISTINCT rustin_stud_name FROM rustin_student;
 6 rows in set (0.00 sec)
 ```
 
-### 7. Use Order By
+### 6. Use Order By
 ```sql
 mysql> SELECT * FROM rustin_student ORDER BY rustin_stud_name;
 +----------------+------------------+-------------------+-------------------+----------------+
@@ -243,6 +243,17 @@ mysql> SELECT * FROM rustin_student ORDER BY rustin_stud_name;
 |              6 | J Doe 6          | jd6@example.com   | 1234567895        |              1 |
 +----------------+------------------+-------------------+-------------------+----------------+
 6 rows in set (0.00 sec)
+```
+
+### 7. Use Group By
+``` sql
+mysql> SELECT rustin_qual_id, COUNT(*) AS student_count FROM rustin_student GROUP BY rustin_qual_id;
++----------------+---------------+
+| rustin_qual_id | student_count |
++----------------+---------------+
+|              1 |             6 |
++----------------+---------------+
+1 row in set (0.00 sec)
 ```
 
 ### 8. Use Aggregation
