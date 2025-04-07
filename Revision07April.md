@@ -1,6 +1,4 @@
-Here are the detailed steps for creating a database management system for the DEECE department, using "Rustin" as the surname prefix.
-
-### 1. Attribute Domains for all Tables
+## 1. Attribute domains for all tables
 
 **Qualification Table**
 - `rustin_qual_id`: Unique identifier for the qualification (Primary Key)
@@ -58,9 +56,7 @@ Here are the detailed steps for creating a database management system for the DE
   - Data Type: `int`
   - Justification: Links the student to a qualification.
 
-# MariaDB Database Creation and Management for DEECE Department
-
-## Steps and Outputs
+## Commands \and outputs
 
 ### 1. Create Database and Use It
 ```sql
