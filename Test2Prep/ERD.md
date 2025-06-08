@@ -35,7 +35,7 @@ The video also demonstrates using Lucidchart to create ERDs and highlights the a
 ### Mermaid Code Example
 
 ```mermaid
-rDiagram
+erDiagram
     CUSTOMER ||--o{ ORDER : places
     ORDER }o--o{ PRODUCT : contains
     CUSTOMER {
