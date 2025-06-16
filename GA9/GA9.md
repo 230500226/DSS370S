@@ -1,5 +1,3 @@
-Below is a comprehensive markdown guide for your assignment based on the requirements. The database name used is **Rusitn230500226** (as instructed). You can copy this as assignment.md and adjust any table/field details to fit your preferences.
-
 ---
 
 # Assignment: Advanced SQL Database Management  
@@ -250,16 +248,3 @@ Advanced queries allow for powerful, efficient, and reliable data operations. Th
 - Overuse can impact performance if not managed properly.
 
 ---
-
-**End of Assignment**
-
----
-
-**Note:**  
-- Replace field values and add sample data as needed.
-- Ensure your MySQL/MariaDB installation supports Events and CTEs.
-- Test each script in a local environment before submission.
-
----
-
-Let me know if you need any modifications or further explanations!
