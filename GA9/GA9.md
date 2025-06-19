@@ -62,6 +62,41 @@ CREATE TABLE Rusitn_Departments (
     Budget DECIMAL(10,2),
     EstablishedYear INT
 );
+
+-- Populate Rusitn_Students
+INSERT INTO Rusitn_Students (FirstName, LastName, Email, EnrollmentDate) VALUES
+('Firstname1', 'Lastname1', 'student1@email.com', '2022-01-01'),
+('Firstname2', 'Lastname2', 'student2@email.com', '2022-01-02'),
+('Firstname3', 'Lastname3', 'student3@email.com', '2022-01-03'),
+('Firstname4', 'Lastname4', 'student4@email.com', '2022-01-04');
+
+-- Populate Rusitn_Courses
+INSERT INTO Rusitn_Courses (CourseName, Department, Credits, Instructor) VALUES
+('Course1', 'Department1', 3, 'Instructor1'),
+('Course2', 'Department2', 4, 'Instructor2'),
+('Course3', 'Department3', 2, 'Instructor3'),
+('Course4', 'Department4', 3, 'Instructor4');
+
+-- Populate Rusitn_Enrollments
+INSERT INTO Rusitn_Enrollments (StudentID, CourseID, Grade, EnrollDate) VALUES
+(1, 1, 'A', '2022-09-01'),
+(2, 2, 'B', '2022-09-02'),
+(3, 3, 'C', '2022-09-03'),
+(4, 4, 'A', '2022-09-04');
+
+-- Populate Rusitn_Instructors
+INSERT INTO Rusitn_Instructors (Name, Department, Email, HireDate) VALUES
+('Instructor1', 'Department1', 'instructor1@email.com', '2020-01-01'),
+('Instructor2', 'Department2', 'instructor2@email.com', '2020-02-01'),
+('Instructor3', 'Department3', 'instructor3@email.com', '2020-03-01'),
+('Instructor4', 'Department4', 'instructor4@email.com', '2020-04-01');
+
+-- Populate Rusitn_Departments
+INSERT INTO Rusitn_Departments (DepartmentName, OfficeLocation, Head, Budget, EstablishedYear) VALUES
+('Department1', 'Building1', 'Head1', 100000.00, 2001),
+('Department2', 'Building2', 'Head2', 110000.00, 2002),
+('Department3', 'Building3', 'Head3', 120000.00, 2003),
+('Department4', 'Building4', 'Head4', 130000.00, 2004);
 ```
 
 **Note:** Each table has at least 5 columns (degree) and will hold at least 4 records (cardinality) as required.
